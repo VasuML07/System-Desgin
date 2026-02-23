@@ -1,228 +1,211 @@
-# 🗄️ Database Caching – Design & Performance Mastery
+# 🗄 Database Design – System Design Mastery Guide
 
-Database caching is about reducing expensive database reads and improving query performance.
+Database design is the backbone of scalable systems.
 
-In real systems, databases become bottlenecks long before application servers do.
+If caching improves speed,  
+database design ensures correctness, consistency, and long-term scalability.
 
-Mastering DB caching shows you understand:
-- Performance optimization
-- Query cost reduction
-- Scalable backend design
-- Production-grade engineering thinking
+Strong database understanding signals backend maturity.
 
 ---
 
-# 🎯 Why Database Caching?
+# 🎯 Core Concepts to Master
 
-Databases are:
-- Disk-bound
-- I/O expensive
-- Latency sensitive
+## 1️⃣ Relational vs Non-Relational Databases
 
-Caching helps:
-- Reduce read load
-- Improve response time
-- Handle traffic spikes
-- Prevent DB overload
+- SQL vs NoSQL
+- When to use each
+- Trade-offs in flexibility vs consistency
 
 ---
 
-# 🧠 Core Concepts to Master
+## 2️⃣ Schema Design
 
-## 1️⃣ Query Result Caching
-
-- Store results of expensive SELECT queries
-- TTL-based invalidation
-- Good for read-heavy systems
-
-Use case:
-- Product catalog
-- User profiles
-- Analytics dashboards
+- Entities & relationships
+- Primary keys
+- Foreign keys
+- One-to-one, one-to-many, many-to-many
+- Join tables
 
 ---
 
-## 2️⃣ Object-Level Caching
+## 3️⃣ Indexing
 
-- Cache specific rows (e.g., UserID → User object)
-- Common in ORM systems
-
----
-
-## 3️⃣ Cache-Aside Pattern (Most Common)
-
-1. Check cache
-2. If miss → query DB
-3. Store in cache
-4. Return result
-
-Understand this deeply.
+- Why indexes improve performance
+- Primary vs secondary index
+- B-Tree basics
+- Composite indexes
+- Index trade-offs (read vs write performance)
 
 ---
 
-## 4️⃣ Write Strategies
+## 4️⃣ Normalization & Denormalization
 
-### Write-Through
-Write to DB and cache simultaneously
-
-### Write-Back
-Write to cache first → DB updated asynchronously
-
-### Write-Around
-Write directly to DB → cache updated on next read
-
-Know trade-offs.
+- 1NF, 2NF, 3NF basics
+- Avoiding redundancy
+- When to denormalize for performance
 
 ---
 
-## 5️⃣ Indexing vs Caching
+## 5️⃣ Transactions & ACID
 
-Important distinction:
+- Atomicity
+- Consistency
+- Isolation
+- Durability
 
-- Indexing → speeds up DB queries internally
-- Caching → avoids hitting DB entirely
-
-You must understand when to use which.
-
----
-
-## 6️⃣ Cache Invalidation
-
-Hardest part.
-
-Techniques:
-- TTL expiration
-- Event-based invalidation
-- Manual invalidation
-- Versioned keys
-
-Bad invalidation = stale data problems.
+Understand isolation levels:
+- Read committed
+- Repeatable read
+- Serializable
 
 ---
 
-## 7️⃣ Distributed Cache Basics
+## 6️⃣ Scaling Databases
 
-- Redis basics
-- Cache replication
-- Consistent hashing
-- Cache clustering
+- Vertical scaling
+- Replication (read replicas)
+- Sharding
+- Partitioning
+- Consistent hashing (conceptual)
+
+---
+
+## 7️⃣ Query Optimization
+
+- EXPLAIN plans
+- Avoiding full table scans
+- Using indexes correctly
+- Avoiding N+1 queries
 
 ---
 
 # 📚 Learning Resources
 
-## 📘 Database + Caching Articles
+## 📘 Official & High-Quality Guides
 
-### 1️⃣ AWS Database Caching Strategies
-https://aws.amazon.com/caching/database-caching/
+### 1️⃣ SQL Tutorial (W3Schools – Basics)
+https://www.w3schools.com/sql/
 
-### 2️⃣ Redis Documentation
-https://redis.io/docs/
+### 2️⃣ PostgreSQL Official Documentation
+https://www.postgresql.org/docs/
 
-### 3️⃣ System Design Primer – Caching
-https://github.com/donnemartin/system-design-primer#caching
-
-### 4️⃣ High Scalability – Real World Architectures
-http://highscalability.com/
+### 3️⃣ System Design Primer – Database Section
+https://github.com/donnemartin/system-design-primer#database
 
 ---
 
-## 🎥 YouTube (High Signal)
+## 📘 Deep Understanding
 
-### 5️⃣ Hussein Nasser – Database & Caching
+### 4️⃣ Designing Data-Intensive Applications (Book)
+https://dataintensive.net/
+
+---
+
+## 🎥 YouTube (High Quality)
+
+### 5️⃣ Hussein Nasser – Database Internals
 https://www.youtube.com/c/HusseinNasser-software-engineering
 
-### 6️⃣ ByteByteGo – Caching Explained
+### 6️⃣ ByteByteGo – Database & Scaling Visuals
 https://www.youtube.com/c/ByteByteGo
 
 ---
 
-# 🧩 Practice Problems
+# 🧠 Practice Problems
 
-Practice caching-related data structures & optimization problems.
+Focus on SQL + design-oriented problems.
 
-Platforms:
+Platforms included:
 - LeetCode
 - CodeStudio (Coding Ninjas)
 - GeeksforGeeks
 
 ---
 
-# 🔹 LeetCode
+# 🔹 LeetCode (SQL & DB Focused)
 
-1. LRU Cache  
-https://leetcode.com/problems/lru-cache/
+1. Combine Two Tables  
+https://leetcode.com/problems/combine-two-tables/
 
-2. LFU Cache  
-https://leetcode.com/problems/lfu-cache/
+2. Second Highest Salary  
+https://leetcode.com/problems/second-highest-salary/
 
-3. Time Based Key-Value Store  
+3. Rank Scores  
+https://leetcode.com/problems/rank-scores/
+
+4. Customers Who Never Order  
+https://leetcode.com/problems/customers-who-never-order/
+
+5. Department Highest Salary  
+https://leetcode.com/problems/department-highest-salary/
+
+6. Trips and Users  
+https://leetcode.com/problems/trips-and-users/
+
+7. Design Underground System  
+https://leetcode.com/problems/design-underground-system/
+
+8. Time Based Key-Value Store  
 https://leetcode.com/problems/time-based-key-value-store/
-
-4. Design Hit Counter  
-https://leetcode.com/problems/design-hit-counter/
-
-5. Insert Delete GetRandom O(1)  
-https://leetcode.com/problems/insert-delete-getrandom-o1/
-
-6. Design In-Memory File System  
-https://leetcode.com/problems/design-in-memory-file-system/
 
 ---
 
 # 🔹 CodeStudio (Coding Ninjas)
 
-1. Design LRU Cache  
-https://www.codingninjas.com/studio/problems/lru-cache_1170050
+1. SQL Basics Practice  
+https://www.codingninjas.com/studio/problems/sql-basics_1170048
 
-2. LFU Cache  
-https://www.codingninjas.com/studio/problems/lfu-cache_1170051
+2. Complex SQL Queries  
+https://www.codingninjas.com/studio/problems/complex-sql-queries_1170049
 
-3. Implement HashMap  
-https://www.codingninjas.com/studio/problems/design-hashmap_1170054
+3. Database Schema Design Practice  
+https://www.codingninjas.com/studio/problems/database-schema-design_1170052
 
 ---
 
 # 🔹 GeeksforGeeks
 
-1. LRU Cache Implementation  
-https://www.geeksforgeeks.org/lru-cache-implementation/
+1. SQL Practice Problems  
+https://www.geeksforgeeks.org/sql-practice-questions/
 
-2. LFU Cache Implementation  
-https://www.geeksforgeeks.org/least-frequently-used-lfu-cache-implementation/
+2. Database Design Interview Questions  
+https://www.geeksforgeeks.org/database-design-interview-questions/
 
-3. Caching in DBMS  
-https://www.geeksforgeeks.org/caching-in-dbms/
+3. Normalization in DBMS  
+https://www.geeksforgeeks.org/normalization-in-dbms/
 
 ---
 
 # 🚀 Mini Projects to Build
 
-Add DB caching to a real backend project:
+To truly master database design:
 
-- Cache user profile queries
-- Cache product listings
-- Implement TTL-based cache invalidation
-- Add Redis layer to existing API
-- Measure performance before vs after caching
+- Design schema for a blog system
+- Design schema for an e-commerce platform
+- Build authentication system with user roles
+- Implement pagination with indexing
+- Add read-replica simulation in project
 
-Track:
-- Latency reduction
-- DB query count reduction
+Deploy with:
+- PostgreSQL / MySQL
+- Add indexing
+- Measure query time
 
 ---
 
 # 🏁 Final Goal
 
-After mastering Database Caching, you should:
+After mastering this guide, you should be able to:
 
-- Identify when DB is the bottleneck
-- Choose correct caching strategy
-- Design invalidation safely
-- Combine indexing + caching effectively
-- Explain trade-offs clearly in interviews
+- Design clean relational schemas
+- Choose between SQL and NoSQL
+- Explain indexing trade-offs
+- Discuss sharding & replication confidently
+- Optimize queries using reasoning
 
-Caching is not just speed.
-It’s controlled performance engineering.
+Database design is not just about tables.
 
-Master it, and your database design answers become production-ready.
+It’s about long-term scalability and correctness.
+
+Master it, and your system design answers gain depth.
