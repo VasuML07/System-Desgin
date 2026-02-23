@@ -1,190 +1,161 @@
-# ⚖️ Caching in Load Balancing – System Design Mastery Guide
+# ⚖️ Load Balancing – System Design Mastery Guide
 
-Caching and Load Balancing together form the backbone of scalable systems.
+Load balancing is a core concept in scalable systems.
 
-Load balancers distribute traffic.
-Caching reduces backend pressure.
+If your application receives 1 million requests per minute,
+a single server cannot handle it.
 
-When combined properly, they:
+Load balancers distribute traffic across multiple servers
+to ensure:
 
-- Reduce server load
-- Improve latency
-- Increase availability
-- Handle traffic spikes safely
-- Prevent cascading failures
-
-This guide focuses on how caching supports load balancing strategies.
+- High availability
+- Scalability
+- Fault tolerance
+- Reduced latency
 
 ---
 
-# 🎯 Why Caching Matters in Load Balancing
+# 🎯 Core Concepts to Master
 
-Without caching:
+## 1️⃣ Why Load Balancing?
 
-- Every request reaches backend servers
-- Load balancer distributes heavy traffic
-- Backend services become bottlenecks
-
-With caching:
-
-- Frequently accessed data served instantly
-- Fewer backend hits
-- Better horizontal scalability
-- Lower infrastructure cost
-
-Caching increases the *effective capacity* of your load-balanced system.
+- Prevent single point of failure
+- Distribute traffic evenly
+- Improve availability
+- Enable horizontal scaling
 
 ---
 
-# 🧠 Core Concepts to Master
+## 2️⃣ Types of Load Balancers
 
-## 1️⃣ Cache Before Load Balancer (CDN Level)
+### Layer 4 (Transport Layer)
+- Works at TCP/UDP level
+- Fast, less intelligent
+- Routes based on IP & port
 
-Flow:
-Client → CDN Cache → Load Balancer → Backend
-
-CDN absorbs:
-- Static assets
-- Images
-- API responses (if cacheable)
-
-Reduces traffic before reaching infrastructure.
+### Layer 7 (Application Layer)
+- Works at HTTP level
+- Can route based on URL, headers, cookies
+- Smarter traffic routing
 
 ---
 
-## 2️⃣ Cache After Load Balancer (Distributed Cache Layer)
+## 3️⃣ Load Balancing Algorithms
 
-Flow:
-Client → Load Balancer → App Server → Redis Cache → Database
+- Round Robin
+- Weighted Round Robin
+- Least Connections
+- Least Response Time
+- IP Hash
 
-App servers:
-- Check shared cache
-- Avoid redundant DB queries
-
-Critical for horizontal scaling.
-
----
-
-## 3️⃣ Sticky Sessions vs Stateless Systems
-
-Load balancers can:
-
-- Use sticky sessions (same user → same server)
-- Or fully stateless architecture with shared cache
-
-Best practice:
-Stateless + shared distributed cache.
+Know when each is useful.
 
 ---
 
-## 4️⃣ Cache Consistency in Multi-Instance Systems
+## 4️⃣ Health Checks
 
-Multiple servers accessing same cache:
-
-Understand:
-- Distributed invalidation
-- Race conditions
-- Cache replication
-- Consistent hashing
+- Liveness checks
+- Readiness checks
+- Removing unhealthy servers
+- Automatic failover
 
 ---
 
-## 5️⃣ Cache + Auto Scaling
+## 5️⃣ Reverse Proxy
 
-During traffic spike:
+Load balancers often act as reverse proxies.
 
-- Cache hit ratio increases
-- Fewer new servers required
-- Faster scale-out
-
-Caching reduces scaling pressure.
+Examples:
+- Nginx
+- HAProxy
 
 ---
 
-## 6️⃣ Cache Stampede in Load Balanced Systems
+## 6️⃣ Sticky Sessions
 
-When cache expires:
+- Session affinity
+- When to avoid it
+- Why stateless services are better
 
-All servers simultaneously hit DB.
+---
 
-Solutions:
-- Mutex locking
-- Staggered TTL
-- Stale-while-revalidate
-- Request collapsing
+## 7️⃣ Global Load Balancing
 
-Interview favorite topic.
+- DNS-based load balancing
+- Geo-based routing
+- CDN integration
 
 ---
 
 # 📚 Learning Resources
 
-## 📘 Articles
+## 📘 Official & High-Quality Guides
 
-### 1️⃣ AWS – Load Balancing Basics
-https://aws.amazon.com/elasticloadbalancing/
+### 1️⃣ AWS Elastic Load Balancing Guide
+https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/what-is-load-balancing.html
 
-### 2️⃣ AWS – Caching Strategies
-https://aws.amazon.com/caching/
+### 2️⃣ NGINX Load Balancing Overview
+https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/
 
-### 3️⃣ System Design Primer – Load Balancing
+### 3️⃣ System Design Primer – Load Balancing Section
 https://github.com/donnemartin/system-design-primer#load-balancing
 
 ---
 
 ## 🎥 YouTube (High Quality)
 
-### 4️⃣ Hussein Nasser – Load Balancers Explained
+### 4️⃣ Hussein Nasser – Load Balancer Deep Dive
 https://www.youtube.com/c/HusseinNasser-software-engineering
 
-### 5️⃣ ByteByteGo – Caching + Scalability
+### 5️⃣ ByteByteGo – Load Balancing Explained
 https://www.youtube.com/c/ByteByteGo
 
 ---
 
-# 🧩 Practice Problems
+# 🧠 Practice Problems
 
-Focus on design + distributed logic problems.
+Load balancing is tested indirectly via system design,
+distributed systems, and design problems.
 
-Platforms:
+Platforms included:
 - LeetCode
 - CodeStudio (Coding Ninjas)
 - GeeksforGeeks
 
 ---
 
-# 🔹 LeetCode
+# 🔹 LeetCode (Design & Distributed Thinking)
 
-1. LRU Cache  
-https://leetcode.com/problems/lru-cache/
-
-2. LFU Cache  
-https://leetcode.com/problems/lfu-cache/
-
-3. Design Twitter  
+1. Design Twitter  
 https://leetcode.com/problems/design-twitter/
+
+2. Web Crawler Multithreaded  
+https://leetcode.com/problems/web-crawler-multithreaded/
+
+3. Time Based Key-Value Store  
+https://leetcode.com/problems/time-based-key-value-store/
 
 4. Design Hit Counter  
 https://leetcode.com/problems/design-hit-counter/
 
-5. Time Based Key-Value Store  
-https://leetcode.com/problems/time-based-key-value-store/
+5. Find Servers That Handled Most Number of Requests  
+https://leetcode.com/problems/find-servers-that-handled-most-number-of-requests/
 
-6. Consistent Hashing (Premium)
-https://leetcode.com/problems/consistent-hashing/
+6. My Calendar III  
+https://leetcode.com/problems/my-calendar-iii/
 
 ---
 
 # 🔹 CodeStudio (Coding Ninjas)
 
-1. LRU Cache  
-https://www.codingninjas.com/studio/problems/lru-cache_1170050
-
-2. Implement HashMap  
-https://www.codingninjas.com/studio/problems/design-hashmap_1170054
-
-3. Rate Limiter  
+1. Design Rate Limiter  
 https://www.codingninjas.com/studio/problems/design-a-rate-limiter_1170056
+
+2. Multithreading Basics  
+https://www.codingninjas.com/studio/problems/multithreading-basics_1170058
+
+3. Server Load Distribution Simulation  
+https://www.codingninjas.com/studio/problems/server-load-distribution_1170060
 
 ---
 
@@ -193,38 +164,41 @@ https://www.codingninjas.com/studio/problems/design-a-rate-limiter_1170056
 1. Load Balancing Algorithms  
 https://www.geeksforgeeks.org/load-balancing-algorithms/
 
-2. Consistent Hashing  
-https://www.geeksforgeeks.org/consistent-hashing/
+2. Round Robin Scheduling  
+https://www.geeksforgeeks.org/round-robin-scheduling-in-operating-system/
 
-3. Caching in Distributed Systems  
-https://www.geeksforgeeks.org/caching-in-distributed-systems/
+3. High Availability in System Design  
+https://www.geeksforgeeks.org/high-availability-in-system-design/
 
 ---
 
 # 🚀 Mini Projects to Build
 
-Implement these for deeper understanding:
+To truly understand load balancing:
 
-- Build simple load balancer simulation
-- Add Redis cache to distributed backend
-- Implement consistent hashing for server mapping
-- Simulate cache stampede & fix it
-- Measure performance improvement with caching layer
+- Deploy 2 backend instances locally
+- Use Nginx as load balancer
+- Implement round robin
+- Simulate server failure
+- Add health checks
+- Measure latency differences
+
+Optional:
+- Deploy on AWS using Elastic Load Balancer
 
 ---
 
 # 🏁 Final Goal
 
-After mastering caching in load balancing, you should:
+After mastering load balancing, you should be able to:
 
-- Design stateless scalable systems
-- Combine load balancing + caching correctly
-- Handle distributed cache invalidation
-- Prevent backend overload
-- Explain scaling trade-offs confidently
+- Explain how traffic is distributed
+- Choose correct algorithm
+- Design stateless backend systems
+- Handle server failure gracefully
+- Scale horizontally with confidence
 
-Caching + Load Balancing is not just performance engineering.
+Load balancing is not just routing.
+It’s the foundation of scalable architecture.
 
-It’s scalability architecture.
-
-Master this, and your system design answers become production-grade.
+Master it, and your system design answers become production-grade.
